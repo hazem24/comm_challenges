@@ -1,0 +1,521 @@
+
+mina_challenge.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000002a6  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000000a  00800060  000002a6  0000033a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000027  0080006a  0080006a  00000344  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000344  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000374  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000170  00000000  00000000  000003b0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00001771  00000000  00000000  00000520  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000d04  00000000  00000000  00001c91  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000ce7  00000000  00000000  00002995  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000310  00000000  00000000  0000367c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000099b  00000000  00000000  0000398c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000ae8  00000000  00000000  00004327  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000148  00000000  00000000  00004e0f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 d9 00 	jmp	0x1b2	; 0x1b2 <__vector_3>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 14 01 	jmp	0x228	; 0x228 <__vector_12>
+  34:	0c 94 23 01 	jmp	0x246	; 0x246 <__vector_13>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e6 ea       	ldi	r30, 0xA6	; 166
+  68:	f2 e0       	ldi	r31, 0x02	; 2
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	aa 36       	cpi	r26, 0x6A	; 106
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	aa e6       	ldi	r26, 0x6A	; 106
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a1 39       	cpi	r26, 0x91	; 145
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 99 00 	call	0x132	; 0x132 <main>
+  8a:	0c 94 51 01 	jmp	0x2a2	; 0x2a2 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <ESTIMATOR_run>:
+ * @return void.
+ */
+void ESTIMATOR_run(void)
+{
+    /* Speed Received from PC. */
+    if( TRUE == g_u8PcFlag )
+  92:	80 91 6b 00 	lds	r24, 0x006B	; 0x80006b <g_u8PcFlag>
+  96:	81 30       	cpi	r24, 0x01	; 1
+  98:	81 f5       	brne	.+96     	; 0xfa <ESTIMATOR_run+0x68>
+         * Main Logic. 
+         * Reading Button 1 => TRUE => Speed Increase.
+         * Reading Button 2 => TRUE => Speed Increase.
+         * Reading Button 1 && Reading Button 2 => No variation in speed.
+         */
+        if( SWITCH_read(SPEED_INCREASE_BUTTON) && SWITCH_read(SPEED_DECREASE_BUTTON) )
+  9a:	84 e1       	ldi	r24, 0x14	; 20
+  9c:	0e 94 7e 00 	call	0xfc	; 0xfc <SWITCH_read>
+  a0:	88 23       	and	r24, r24
+  a2:	29 f0       	breq	.+10     	; 0xae <ESTIMATOR_run+0x1c>
+  a4:	8a e0       	ldi	r24, 0x0A	; 10
+  a6:	0e 94 7e 00 	call	0xfc	; 0xfc <SWITCH_read>
+  aa:	81 11       	cpse	r24, r1
+  ac:	26 c0       	rjmp	.+76     	; 0xfa <ESTIMATOR_run+0x68>
+        {
+            /* NOP in this case => Speed Constant. */
+        }
+        else if (TRUE == SWITCH_read(SPEED_INCREASE_BUTTON))
+  ae:	84 e1       	ldi	r24, 0x14	; 20
+  b0:	0e 94 7e 00 	call	0xfc	; 0xfc <SWITCH_read>
+  b4:	81 30       	cpi	r24, 0x01	; 1
+  b6:	89 f4       	brne	.+34     	; 0xda <ESTIMATOR_run+0x48>
+        {
+            
+            if (g_u8CarSpeed + 10 <= MAX_SPEED)
+  b8:	80 91 6a 00 	lds	r24, 0x006A	; 0x80006a <__data_end>
+  bc:	90 e0       	ldi	r25, 0x00	; 0
+  be:	0a 96       	adiw	r24, 0x0a	; 10
+  c0:	85 36       	cpi	r24, 0x65	; 101
+  c2:	91 05       	cpc	r25, r1
+  c4:	2c f4       	brge	.+10     	; 0xd0 <ESTIMATOR_run+0x3e>
+            {
+                g_u8CarSpeed += 10;
+  c6:	80 91 6a 00 	lds	r24, 0x006A	; 0x80006a <__data_end>
+  ca:	86 5f       	subi	r24, 0xF6	; 246
+  cc:	80 93 6a 00 	sts	0x006A, r24	; 0x80006a <__data_end>
+            else
+            {
+                /* NOP. */
+            }
+            
+            SPI_Send_Byte(g_u8CarSpeed);
+  d0:	80 91 6a 00 	lds	r24, 0x006A	; 0x80006a <__data_end>
+  d4:	0e 94 02 01 	call	0x204	; 0x204 <SPI_Send_Byte>
+  d8:	08 95       	ret
+        }
+        else if (TRUE == SWITCH_read(SPEED_DECREASE_BUTTON))
+  da:	8a e0       	ldi	r24, 0x0A	; 10
+  dc:	0e 94 7e 00 	call	0xfc	; 0xfc <SWITCH_read>
+  e0:	81 30       	cpi	r24, 0x01	; 1
+  e2:	59 f4       	brne	.+22     	; 0xfa <ESTIMATOR_run+0x68>
+        {
+            
+            if((sint_16_t)(g_u8CarSpeed - 10) < 0)
+  e4:	80 91 6a 00 	lds	r24, 0x006A	; 0x80006a <__data_end>
+  e8:	90 e0       	ldi	r25, 0x00	; 0
+  ea:	0a 97       	sbiw	r24, 0x0a	; 10
+  ec:	12 f4       	brpl	.+4      	; 0xf2 <ESTIMATOR_run+0x60>
+            {
+                g_u8CarSpeed = 0;
+  ee:	10 92 6a 00 	sts	0x006A, r1	; 0x80006a <__data_end>
+            else
+            {
+                /* NOP. */
+            }
+            
+            SPI_Send_Byte(g_u8CarSpeed);
+  f2:	80 91 6a 00 	lds	r24, 0x006A	; 0x80006a <__data_end>
+  f6:	0e 94 02 01 	call	0x204	; 0x204 <SPI_Send_Byte>
+  fa:	08 95       	ret
+
+000000fc <SWITCH_read>:
+ * @param switch_number 
+ * @return uint8_t 
+ */
+
+uint8_t SWITCH_read(uint8_t switch_number)
+{
+  fc:	cf 93       	push	r28
+  fe:	c8 2f       	mov	r28, r24
+    uint8_t au8_response = LOW;
+    if ( HIGH == DIO_Read_Pin(switch_number))
+ 100:	0e 94 aa 00 	call	0x154	; 0x154 <DIO_Read_Pin>
+ 104:	81 30       	cpi	r24, 0x01	; 1
+ 106:	89 f4       	brne	.+34     	; 0x12a <SWITCH_read+0x2e>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 108:	2f ef       	ldi	r18, 0xFF	; 255
+ 10a:	80 e7       	ldi	r24, 0x70	; 112
+ 10c:	92 e0       	ldi	r25, 0x02	; 2
+ 10e:	21 50       	subi	r18, 0x01	; 1
+ 110:	80 40       	sbci	r24, 0x00	; 0
+ 112:	90 40       	sbci	r25, 0x00	; 0
+ 114:	e1 f7       	brne	.-8      	; 0x10e <SWITCH_read+0x12>
+ 116:	00 c0       	rjmp	.+0      	; 0x118 <SWITCH_read+0x1c>
+ 118:	00 00       	nop
+    {
+        _delay_ms(100);
+        if(HIGH == DIO_Read_Pin(switch_number))
+ 11a:	8c 2f       	mov	r24, r28
+ 11c:	0e 94 aa 00 	call	0x154	; 0x154 <DIO_Read_Pin>
+ * @return uint8_t 
+ */
+
+uint8_t SWITCH_read(uint8_t switch_number)
+{
+    uint8_t au8_response = LOW;
+ 120:	91 e0       	ldi	r25, 0x01	; 1
+ 122:	81 30       	cpi	r24, 0x01	; 1
+ 124:	19 f0       	breq	.+6      	; 0x12c <SWITCH_read+0x30>
+ 126:	90 e0       	ldi	r25, 0x00	; 0
+ 128:	01 c0       	rjmp	.+2      	; 0x12c <SWITCH_read+0x30>
+ 12a:	90 e0       	ldi	r25, 0x00	; 0
+        {
+           au8_response = HIGH;     
+        }
+    }
+    return au8_response;
+ 12c:	89 2f       	mov	r24, r25
+ 12e:	cf 91       	pop	r28
+ 130:	08 95       	ret
+
+00000132 <main>:
+
+int main(void)
+{
+   
+	/* Init App. */
+	ESTIMATOR_run();
+ 132:	0e 94 49 00 	call	0x92	; 0x92 <ESTIMATOR_run>
+    while ( TRUE ) 
+    {
+		ESTIMATOR_run();
+ 136:	0e 94 49 00 	call	0x92	; 0x92 <ESTIMATOR_run>
+ 13a:	fd cf       	rjmp	.-6      	; 0x136 <main+0x4>
+
+0000013c <realPinNumber>:
+		{
+			return_value = PIN_DEFINED_AS_INPUT;
+		}
+	}
+	return return_value;
+}
+ 13c:	88 31       	cpi	r24, 0x18	; 24
+ 13e:	10 f0       	brcs	.+4      	; 0x144 <realPinNumber+0x8>
+ 140:	87 51       	subi	r24, 0x17	; 23
+ 142:	08 95       	ret
+ 144:	80 31       	cpi	r24, 0x10	; 16
+ 146:	10 f0       	brcs	.+4      	; 0x14c <realPinNumber+0x10>
+ 148:	8f 50       	subi	r24, 0x0F	; 15
+ 14a:	08 95       	ret
+ 14c:	88 30       	cpi	r24, 0x08	; 8
+ 14e:	08 f0       	brcs	.+2      	; 0x152 <realPinNumber+0x16>
+ 150:	87 50       	subi	r24, 0x07	; 7
+ 152:	08 95       	ret
+
+00000154 <DIO_Read_Pin>:
+ * @param <integer> pin Number.
+ * @return HIGH  = 1 or LOW = 0,
+ *	 	 	Error number in case it's not cleared.
+ */
+uint8_t DIO_Read_Pin(uint8_t pinNumber)
+{
+ 154:	cf 93       	push	r28
+ * @note this function will need more modification to handle more error cases.
+ */
+static uint8_t DIO_PinStatus(uint8_t pinNumber)
+{
+	uint8_t return_value;
+	if (pinNumber <= (DIO_CONFIG_PINS_NUMBERS - 1))
+ 156:	80 32       	cpi	r24, 0x20	; 32
+ 158:	18 f5       	brcc	.+70     	; 0x1a0 <DIO_Read_Pin+0x4c>
+	{
+		if(track_pins[pinNumber] == FALSE)
+ 15a:	e8 2f       	mov	r30, r24
+ 15c:	f0 e0       	ldi	r31, 0x00	; 0
+ 15e:	e4 59       	subi	r30, 0x94	; 148
+ 160:	ff 4f       	sbci	r31, 0xFF	; 255
+ 162:	90 81       	ld	r25, Z
+ 164:	91 11       	cpse	r25, r1
+ 166:	20 c0       	rjmp	.+64     	; 0x1a8 <DIO_Read_Pin+0x54>
+ 168:	1d c0       	rjmp	.+58     	; 0x1a4 <DIO_Read_Pin+0x50>
+ 16a:	c8 2f       	mov	r28, r24
+		/*
+		 * check if pin is input.
+		 */
+		if ( track_pins[ pinNumber ]  == 1 )
+		{
+			pinNumber = realPinNumber(pinNumber);
+ 16c:	0e 94 9e 00 	call	0x13c	; 0x13c <realPinNumber>
+			return_value = READ_BIT(*(PIN_Address[DIO_PortNumber(pin)]), pinNumber);
+ 170:	c6 95       	lsr	r28
+ 172:	c6 95       	lsr	r28
+ 174:	c6 95       	lsr	r28
+ 176:	ec 2f       	mov	r30, r28
+ 178:	f0 e0       	ldi	r31, 0x00	; 0
+ 17a:	ee 0f       	add	r30, r30
+ 17c:	ff 1f       	adc	r31, r31
+ 17e:	e0 5a       	subi	r30, 0xA0	; 160
+ 180:	ff 4f       	sbci	r31, 0xFF	; 255
+ 182:	01 90       	ld	r0, Z+
+ 184:	f0 81       	ld	r31, Z
+ 186:	e0 2d       	mov	r30, r0
+ 188:	90 81       	ld	r25, Z
+ 18a:	21 e0       	ldi	r18, 0x01	; 1
+ 18c:	30 e0       	ldi	r19, 0x00	; 0
+ 18e:	02 c0       	rjmp	.+4      	; 0x194 <DIO_Read_Pin+0x40>
+ 190:	22 0f       	add	r18, r18
+ 192:	33 1f       	adc	r19, r19
+ 194:	8a 95       	dec	r24
+ 196:	e2 f7       	brpl	.-8      	; 0x190 <DIO_Read_Pin+0x3c>
+ 198:	89 2f       	mov	r24, r25
+ 19a:	82 23       	and	r24, r18
+ 19c:	80 83       	st	Z, r24
+ 19e:	07 c0       	rjmp	.+14     	; 0x1ae <DIO_Read_Pin+0x5a>
+			//Pin defined before.
+			return_value = PIN_REDEFINED_NOT_ALLOWED;
+		}
+	}else
+	{
+		return_value = PIN_NUBMER_EXCEEDS_PINS_RANGE;
+ 1a0:	86 e0       	ldi	r24, 0x06	; 6
+ 1a2:	05 c0       	rjmp	.+10     	; 0x1ae <DIO_Read_Pin+0x5a>
+	if (pinNumber <= (DIO_CONFIG_PINS_NUMBERS - 1))
+	{
+		if(track_pins[pinNumber] == FALSE)
+		{
+			//Meaning pin not defined before.
+			return_value = TRUE;
+ 1a4:	81 e0       	ldi	r24, 0x01	; 1
+ 1a6:	03 c0       	rjmp	.+6      	; 0x1ae <DIO_Read_Pin+0x5a>
+	if ( return_value == PIN_REDEFINED_NOT_ALLOWED )//Meaning bit is founded.
+	{
+		/*
+		 * check if pin is input.
+		 */
+		if ( track_pins[ pinNumber ]  == 1 )
+ 1a8:	91 30       	cpi	r25, 0x01	; 1
+ 1aa:	f9 f2       	breq	.-66     	; 0x16a <DIO_Read_Pin+0x16>
+		{
+			pinNumber = realPinNumber(pinNumber);
+			return_value = READ_BIT(*(PIN_Address[DIO_PortNumber(pin)]), pinNumber);
+		}else
+		{
+			return_value = PIN_DEFINED_AS_OUTPUT;
+ 1ac:	84 e0       	ldi	r24, 0x04	; 4
+		}
+	}
+	return return_value;
+
+}
+ 1ae:	cf 91       	pop	r28
+ 1b0:	08 95       	ret
+
+000001b2 <__vector_3>:
+}
+
+
+
+ISR(INT2_vect)
+{
+ 1b2:	1f 92       	push	r1
+ 1b4:	0f 92       	push	r0
+ 1b6:	0f b6       	in	r0, 0x3f	; 63
+ 1b8:	0f 92       	push	r0
+ 1ba:	11 24       	eor	r1, r1
+ 1bc:	2f 93       	push	r18
+ 1be:	3f 93       	push	r19
+ 1c0:	4f 93       	push	r20
+ 1c2:	5f 93       	push	r21
+ 1c4:	6f 93       	push	r22
+ 1c6:	7f 93       	push	r23
+ 1c8:	8f 93       	push	r24
+ 1ca:	9f 93       	push	r25
+ 1cc:	af 93       	push	r26
+ 1ce:	bf 93       	push	r27
+ 1d0:	ef 93       	push	r30
+ 1d2:	ff 93       	push	r31
+    if (NULL != g_callBack)
+ 1d4:	e0 91 8c 00 	lds	r30, 0x008C	; 0x80008c <g_callBack>
+ 1d8:	f0 91 8d 00 	lds	r31, 0x008D	; 0x80008d <g_callBack+0x1>
+ 1dc:	30 97       	sbiw	r30, 0x00	; 0
+ 1de:	09 f0       	breq	.+2      	; 0x1e2 <__vector_3+0x30>
+    {
+        g_callBack();
+ 1e0:	09 95       	icall
+    }
+ 1e2:	ff 91       	pop	r31
+ 1e4:	ef 91       	pop	r30
+ 1e6:	bf 91       	pop	r27
+ 1e8:	af 91       	pop	r26
+ 1ea:	9f 91       	pop	r25
+ 1ec:	8f 91       	pop	r24
+ 1ee:	7f 91       	pop	r23
+ 1f0:	6f 91       	pop	r22
+ 1f2:	5f 91       	pop	r21
+ 1f4:	4f 91       	pop	r20
+ 1f6:	3f 91       	pop	r19
+ 1f8:	2f 91       	pop	r18
+ 1fa:	0f 90       	pop	r0
+ 1fc:	0f be       	out	0x3f, r0	; 63
+ 1fe:	0f 90       	pop	r0
+ 200:	1f 90       	pop	r1
+ 202:	18 95       	reti
+
+00000204 <SPI_Send_Byte>:
+	else 
+	{
+		retval = ERROR_INTERRUPT_POLLING;		/* Wrong SPI Not Interrupt or Polling  */
+	}
+	return retval;
+}
+ 204:	90 91 8e 00 	lds	r25, 0x008E	; 0x80008e <gu8_Interrupt_Polling_Mode>
+ 208:	91 30       	cpi	r25, 0x01	; 1
+ 20a:	29 f4       	brne	.+10     	; 0x216 <SPI_Send_Byte+0x12>
+ 20c:	10 92 68 00 	sts	0x0068, r1	; 0x800068 <gu8_Data_SentFlag>
+ 210:	8f b9       	out	0x0f, r24	; 15
+ 212:	80 e0       	ldi	r24, 0x00	; 0
+ 214:	08 95       	ret
+ 216:	91 11       	cpse	r25, r1
+ 218:	05 c0       	rjmp	.+10     	; 0x224 <SPI_Send_Byte+0x20>
+ 21a:	8f b9       	out	0x0f, r24	; 15
+ 21c:	77 9b       	sbis	0x0e, 7	; 14
+ 21e:	fe cf       	rjmp	.-4      	; 0x21c <SPI_Send_Byte+0x18>
+ 220:	80 e0       	ldi	r24, 0x00	; 0
+ 222:	08 95       	ret
+ 224:	8c ef       	ldi	r24, 0xFC	; 252
+ 226:	08 95       	ret
+
+00000228 <__vector_12>:
+
+/* ISR of SPI */
+void __vector_12(void)
+{
+ 228:	1f 92       	push	r1
+ 22a:	0f 92       	push	r0
+ 22c:	0f b6       	in	r0, 0x3f	; 63
+ 22e:	0f 92       	push	r0
+ 230:	11 24       	eor	r1, r1
+ 232:	8f 93       	push	r24
+	gu8_Data_SentFlag = 1;    /* Set the Global variable to ensure of ISR data sent successfully. */
+ 234:	81 e0       	ldi	r24, 0x01	; 1
+ 236:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <gu8_Data_SentFlag>
+ 23a:	8f 91       	pop	r24
+ 23c:	0f 90       	pop	r0
+ 23e:	0f be       	out	0x3f, r0	; 63
+ 240:	0f 90       	pop	r0
+ 242:	1f 90       	pop	r1
+ 244:	18 95       	reti
+
+00000246 <__vector_13>:
+#endif
+#endif
+
+#if RX_ISR_CUSTOM == DISABLE && RX_INTERRUPT
+ISR(USART_RXC_vect)
+{
+ 246:	1f 92       	push	r1
+ 248:	0f 92       	push	r0
+ 24a:	0f b6       	in	r0, 0x3f	; 63
+ 24c:	0f 92       	push	r0
+ 24e:	11 24       	eor	r1, r1
+ 250:	2f 93       	push	r18
+ 252:	3f 93       	push	r19
+ 254:	4f 93       	push	r20
+ 256:	5f 93       	push	r21
+ 258:	6f 93       	push	r22
+ 25a:	7f 93       	push	r23
+ 25c:	8f 93       	push	r24
+ 25e:	9f 93       	push	r25
+ 260:	af 93       	push	r26
+ 262:	bf 93       	push	r27
+ 264:	ef 93       	push	r30
+ 266:	ff 93       	push	r31
+	if(NULL != g_funcPtr_RecieverCallBack)
+ 268:	80 91 8f 00 	lds	r24, 0x008F	; 0x80008f <g_funcPtr_RecieverCallBack>
+ 26c:	90 91 90 00 	lds	r25, 0x0090	; 0x800090 <g_funcPtr_RecieverCallBack+0x1>
+ 270:	89 2b       	or	r24, r25
+ 272:	31 f0       	breq	.+12     	; 0x280 <__vector_13+0x3a>
+	{
+		g_funcPtr_RecieverCallBack(UDR);/* call callBack Function. */
+ 274:	e0 91 8f 00 	lds	r30, 0x008F	; 0x80008f <g_funcPtr_RecieverCallBack>
+ 278:	f0 91 90 00 	lds	r31, 0x0090	; 0x800090 <g_funcPtr_RecieverCallBack+0x1>
+ 27c:	8c b1       	in	r24, 0x0c	; 12
+ 27e:	09 95       	icall
+	}
+}
+ 280:	ff 91       	pop	r31
+ 282:	ef 91       	pop	r30
+ 284:	bf 91       	pop	r27
+ 286:	af 91       	pop	r26
+ 288:	9f 91       	pop	r25
+ 28a:	8f 91       	pop	r24
+ 28c:	7f 91       	pop	r23
+ 28e:	6f 91       	pop	r22
+ 290:	5f 91       	pop	r21
+ 292:	4f 91       	pop	r20
+ 294:	3f 91       	pop	r19
+ 296:	2f 91       	pop	r18
+ 298:	0f 90       	pop	r0
+ 29a:	0f be       	out	0x3f, r0	; 63
+ 29c:	0f 90       	pop	r0
+ 29e:	1f 90       	pop	r1
+ 2a0:	18 95       	reti
+
+000002a2 <_exit>:
+ 2a2:	f8 94       	cli
+
+000002a4 <__stop_program>:
+ 2a4:	ff cf       	rjmp	.-2      	; 0x2a4 <__stop_program>
